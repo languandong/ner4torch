@@ -2,6 +2,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
+parser.add_argument('--device', default="cuda", type=str)
 parser.add_argument('--gpu_id', default=3, type=int)
 parser.add_argument('--pre_model_type', default='ernie_gram', type=str,
                     choices=['roberta', 'nezha_wwm', 'nezha_base', 'ernie_gram'])
@@ -34,9 +35,9 @@ parser.add_argument('--model_save_path', default="./model_save/", type=str)
 parser.add_argument('--do_lower_case', default=True, type=bool)
 parser.add_argument('--best_model', default="/home/wangzhili/LGD/ner4torch/model_save/2021-11-20_11_01_32/model_0.6061.bin", type=str)
 parser.add_argument('--train_data_path', default=[
-                                                     "./data/train.csv",
+                                                  "./data/train.csv",
                                                   #"./data/train_data_public.csv",
-                                                  './data/fake_train_0.95.csv'
+                                                  #'./data/fake_train_0.95.csv'
                                                   # './data/fake_ernie_gram_top2200.csv',
                                                   #  './data/fake_ernie_gram_0.95.csv',
                                                   #"/home/wangzhili/LGD/ner4torch/data/fake_ernie_gram_top2200.csv"
@@ -47,11 +48,10 @@ parser.add_argument('--valid_data_path', default=["./data/valid.csv",
 parser.add_argument('--test_data_path', default=["./data/test_public.csv"], type=list)
 parser.add_argument('--result_data_path', default="./data/result.csv", type=str)
 parser.add_argument('--result_with_char_data_path', default="./data/result_with_char.csv", type=str)
-parser.add_argument('--device', default="cuda", type=str)
 parser.add_argument("--use_fgm", action='store_true', default=True)
 parser.add_argument('--fgm_epsilon', default=0.3, type=float)
-parser.add_argument("--do_ner", action='store_true', default=False)
-parser.add_argument("--do_classify", action='store_true', default=True)
+parser.add_argument("--do_ner", action='store_true', default=True)
+parser.add_argument("--do_classify", action='store_true', default=False)
 
 args = parser.parse_args()
 
